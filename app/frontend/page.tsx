@@ -32,6 +32,9 @@ export default function TestsPage() {
       <button onClick={() => runTest('"has title"')}>Run Title Test</button>
       <button onClick={() => runTest('"book button"')}>Run Book Button Test</button>
       <button onClick={() => runTest('"submit button"')}>Run Submit Button Test</button>
+      <button onClick={() => runTest('"has empty title"')}>Run Empty Title Test</button>
+      <button onClick={() => runTest('"about me link"')}>Run About Me Link Test</button>
+      <button onClick={() => runTest('"what i offer link"')}>Run What I Offer Link Test</button>
       <textarea
         readOnly
         value={result}
