@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import React from 'react';
 
 export default function TestsPage() {
   const [result, setResult] = useState<string>('');

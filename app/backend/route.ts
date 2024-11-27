@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
       if (error) {
         resolve(NextResponse.json({ error: stdout }, { status: 500 }));
       } else {
-        resolve(NextResponse.json({ result: stdout }, { status: 200 }));
+        resolve(NextResponse.json({ result: stdout }, { status: 201 }));
       }
     });
   });
