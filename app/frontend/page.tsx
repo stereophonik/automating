@@ -4,9 +4,15 @@ import { useState } from 'react';
 import React from 'react';
 
 export default function TestsPage() {
+  const [testName, setTestName] = useState<string>('');
   const [result, setResult] = useState<string>('');
 
-  const runTest = async (testName: string): Promise<void> => {
+  const runTest = async (): Promise<void> => {
+    if (!testName) {
+      setResult('Please enter a test name.');
+      return;
+    }
+
     setResult('Running test...');
     try {
       const response = await fetch('/backend', {
@@ -28,13 +34,22 @@ export default function TestsPage() {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h1>Run Playwright Tests</h1>
-      <button onClick={() => runTest('"has title"')}>Run Title Test</button>
-      <button onClick={() => runTest('"book button"')}>Run Book Button Test</button>
-      <button onClick={() => runTest('"submit button"')}>Run Submit Button Test</button>
-      <button onClick={() => runTest('"has empty title"')}>Run Empty Title Test</button>
-      <button onClick={() => runTest('"about me link"')}>Run About Me Link Test</button>
-      <button onClick={() => runTest('"what i offer link"')}>Run What I Offer Link Test</button>
+      <h1>Run Playwright Test</h1>
+      <div style={{ marginBottom: '20px' }}>
+        <label htmlFor="test-name" style={{ display: 'block', marginBottom: '8px' }}>
+          Enter Test Name:
+        </label>
+        <input
+          id="test-name"
+          type="text"
+          value={testName}
+          onChange={(e) => setTestName(e.target.value)}
+          style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
+        />
+      </div>
+      <button onClick={runTest} style={{ padding: '10px 20px', cursor: 'pointer' }}>
+        Execute Test
+      </button>
       <textarea
         readOnly
         value={result}

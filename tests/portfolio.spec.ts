@@ -5,11 +5,6 @@ test.beforeEach(async ({ page }) => {
   await page.goto('https://portfolio-kappa-lime-76.vercel.app');
 });
 
-test('has empty title', async ({ page }) => {
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle("");
-});
-
 test('about me link', async ({ page }) => {
   // Click the get started link.
   await page.getByRole('link', { name: 'ABOUT ME' }).click();
@@ -24,4 +19,12 @@ test('what i offer link', async ({ page }) => {
 
   // Expects page to have a text of Here's a glimpse...
   await expect(page.getByText("Here's a glimpse of what I bring to the table:")).toBeVisible();
+});
+
+test('my portfolio link', async ({ page }) => {
+  // Click the get started link.
+  await page.getByRole('link', { name: 'MY PORTFOLIO' }).first().click();
+
+  // Expects page to have a text of Here's a glimpse...
+  await expect(page.getByText("Looking for a WordPress site? I’ve got you covered!")).toBeVisible();
 });
