@@ -1,18 +1,31 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+test.beforeEach(async ({ page }) => {
+  // Go to the Automation Testing page
+  await page.goto('https://automationintesting.online');
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('has title', async ({ page }) => {
+  // Expect a title "to contain" a substring.
+  await expect(page).toHaveTitle(/Restful-booker-platform demo/);
+});
 
+test('book button', async ({ page }) => {
   // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+  let bookButton = page.getByRole('button', { name: 'Book this room' });
+  bookButton.scrollIntoViewIfNeeded;
+  bookButton.click();
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+  // Expects page to have a text of November 2024.
+  await expect(page.getByText('November 2024')).toBeVisible();
+});
+
+test('submit button', async ({ page }) => {
+  // Click the get started link.
+  let submitButton = page.getByRole('button', { name: 'Submit' });
+  submitButton.scrollIntoViewIfNeeded;
+  submitButton.click();
+
+  // Expects page to have a text of Phone may not be blank.
+  await expect(page.getByText('Phone may not be blank')).toBeVisible();
 });
