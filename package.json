@@ -2,7 +2,12 @@
   "name": "automating",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
